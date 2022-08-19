@@ -4,13 +4,14 @@
 
 class PardoAPI {
   
-  url = 'http://content.locarnofestival.ch/api';
+  url = 'https://content.locarnofestival.ch/api';
   content = '/content';
   item = '/item';
   items = '/items'
   assets = '/assets';
   image = this.assets + '/image';
   headerApi = "api-key";
+  api ="";
 
   /**
    * Costruttore
@@ -26,9 +27,8 @@ class PardoAPI {
    * @param {*} method metodo (GET, POST,...)
    * @returns 
    */
-  request(url, method = 'GET'){
+  async request(url, method = 'GET'){
     var myHeaders = new Headers();
-    var result;
     myHeaders.append(this.headerApi, this.api);
 
     var requestOptions = {
@@ -37,12 +37,9 @@ class PardoAPI {
       redirect: 'follow'
     };
 
-    fetch(url, requestOptions)
-      .then(response => { 
-        result = response.text()
-      })
-      .catch(error => console.log('error', error));
-    return result;
+    const response = await fetch(url, requestOptions);
+    const res = await response.json();
+    return res;
   }
 
   /**
@@ -64,14 +61,8 @@ class PardoAPI {
     return this.url + this.content + this.item;
   }
 
-  /**
-   * Get a formatted filter
-   * @param {} attr_name name of the attribute
-   * @param {*} attr value of the attribute
-   * @returns 
-   */
-  getFilter(attr_name, attr){
-    return "{" + attr_name + ":\"" + attr + "\"}";
+  getFilter(attr_name, name){
+    return "{" + attr_name + ":\"" + name + "\"}";
   }
 
   /**
