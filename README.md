@@ -42,7 +42,7 @@ Recuoera una collezione (es.POI) di dati
 @param {*} tipo di collezione<br>
 @param {*} id id dell'asset<br>
 Recupera un solo asset specifico passando l'ID
-#### getItemByAttr(type, attr, attr_name='name')
+#### getItemByAttr(type, attr, attr_name='name') [NON TESTATO]
 @param {*} tipo di collezione<br>
 @param {*} attr valore dell'attributo<br>
 @param {*} attr_name nome dell'attributo<br>
