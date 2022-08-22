@@ -15,7 +15,7 @@ function createMapboxStreetsV6Style(Style, Fill, Stroke, Icon, Text) {
     var icon = iconCache[iconName];
     if (!icon) {
       icon = new Style({image: new Icon({
-        src: 'https://cdn.rawgit.com/mapbox/maki/master/icons/' + iconName + '-15.svg',
+        src: 'https://assets.locarnofestival.ch/data/web-tools/ico-locate.png',
         imgSize: [15, 15]
       })});
       iconCache[iconName] = icon;
