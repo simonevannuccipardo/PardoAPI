@@ -18,3 +18,9 @@ Classe per la creazione di mappe (ha bisogno librerie esterne per funzionare)
     map.addPois();
 ´´´
 
+## Documentazione
+### PArdoAPI
+#### Costruttore
+@param {*} api api key
+
+
