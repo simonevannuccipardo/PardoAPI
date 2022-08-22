@@ -11,6 +11,15 @@ Classe per il recupero delle informazioni, sottoforma di JSON, da Cockpit CMS
 Classe per la creazione di mappe (ha bisogno librerie esterne per funzionare)
 
 ## Esempi
+### Recuperare informazioni
+La libreria si appoggia sulle promise asincrone, per questo è necessrio usare .then() per fornire i dati
+```
+var api = new PardoGET(API-CMS);
+api.getItems('poi').then((value) => {
+      //Array dei POI
+      console.log(value);
+})
+```
 ### Creare una mappa
 #### Libreria da includere per caricare la mappa
 ```
@@ -20,9 +29,9 @@ Classe per la creazione di mappe (ha bisogno librerie esterne per funzionare)
 ```
 #### Crea una mappa con tutte le venue di LLF
 ```
-    var map = new PardoMAP([API-CMS], [API-APBOX]);
-    map.getMap('map');
-    map.addPois();
+var map = new PardoMAP(API-CMS, API-APBOX);
+map.getMap('map');
+map.addPois();
 ```
 
 ## Documentazione
