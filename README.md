@@ -11,7 +11,14 @@ Classe per il recupero delle informazioni, sottoforma di JSON, da Cockpit CMS
 Classe per la creazione di mappe (ha bisogno librerie esterne per funzionare)
 
 ## Esempi
-### Crea una mappa con tutte le venue di LLF
+### Creare una mappa
+#### Libreria da includere per caricare la mappa
+```
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/simonevannuccipardo/PardoAPI@main/src/style.css">
+<script src="https://cdn.jsdelivr.net/gh/simonevannuccipardo/PardoAPI@main/src/theme.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/build/ol.js"></script>
+```
+#### Crea una mappa con tutte le venue di LLF
 ```
     var map = new PardoMAP([API-CMS], [API-APBOX]);
     map.getMap('map');
