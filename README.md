@@ -69,3 +69,20 @@ Modifica la collezione di default
 #### getMap(target)
 @param {*} target ID del contenitore in cui verrà pubblicata la mappa<br>
 Crea e pubblica la mappa usando l'ID passato in argomento, se non cambiato precedenetemnte il centro sarà su locarno
+#### addSinglePoi(id, icon = this.defaultIcon)
+@param {*} id ID dell'asset<br>
+@param {*} icon icona del marker (se non impostato prende quella di default)<br>
+Aggiungo un singolo poi
+#### addPois(type = this.typeData , icon = this.defaultIcon)
+@param {*} type tipo del poi (es Venue)
+@param {*} icon url per l'icona del marker
+Aggiungo una collezione di POI alla mappa
+#### addMarker(value, icon = this.defaultIcon)
+@param {*} value array di attributi del POI (singolo POI!!!)<br>
+@param {*} icon immagine del marker<br>
+Metodo per la creazione generica di POI. Crea i marker con gli attributi provenienti da un array, restituise un oggetto 'Layer' da applicare alla mappa
+#### addPopups()
+Questa classe crea degli eventi personalizzati per l'apertura e la chiusura di tooltip sui marker.
+- evento *openPopup* è l'evento che segnala il click sul marker, porta con se i dettagli del marker cliccato
+- evento *closePopup* questo evento segna la richieta di chiusura del popup
+
