@@ -12,11 +12,11 @@ Classe per la creazione di mappe (ha bisogno librerie esterne per funzionare)
 
 ## Esempi
 ### Crea una mappa con tutte le venue di LLF
-´´´<br>
+```<br>
     var map = new PardoMAP([API-CMS], [API-,APBOX]);<br>
     map.getMap('map');<br>
     map.addPois();<br>
-´´´
+```
 
 ## Documentazione
 ### PardoAPI
