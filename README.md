@@ -19,8 +19,13 @@ Classe per la creazione di mappe (ha bisogno librerie esterne per funzionare)
 ´´´
 
 ## Documentazione
-### PArdoAPI
+### PardoAPI
 #### Costruttore
 @param {*} api api key
-
+Istanzia la classe prendendo in argomento la api di Cockpit CMS
+#### request
+@param {*} url url di richiesta
+@param {*} method metodo (GET, POST,...)
+@returns richiesta
+Metodo generico di richiesta API di Cockpit CMS, tutte le richieste si basano su questo metodo
 
