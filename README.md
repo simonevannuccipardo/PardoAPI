@@ -23,8 +23,8 @@ api.getItems('poi').then((value) => {
 ### Creare una mappa
 #### Libreria da includere per caricare la mappa
 ```
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/simonevannuccipardo/PardoAPI@main/src/style.css">
-<script src="https://cdn.jsdelivr.net/gh/simonevannuccipardo/PardoAPI@main/src/theme.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/simonevannuccipardo/PardoAPI@/src/style.css">
+<script src="https://cdn.jsdelivr.net/gh/simonevannuccipardo/PardoAPI@/src/theme.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/build/ol.js"></script>
 ```
 #### Crea una mappa con tutte le venue di LLF
