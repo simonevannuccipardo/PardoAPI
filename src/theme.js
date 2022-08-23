@@ -35,6 +35,8 @@ function createMapboxStreetsV6Style(Style, Fill, Stroke, Icon, Text) {
     var disputed = feature.get('disputed');
     var maki = feature.get('maki');
     var geom = feature.getGeometry().getType();
+    
+    //Qui è possibile modificare i colori della mappa
     if (layer == 'landuse' && cls == 'park') {
       fill.setColor('#d8e8c8');
       styles[length++] = polygon;
@@ -71,7 +73,7 @@ function createMapboxStreetsV6Style(Style, Fill, Stroke, Icon, Text) {
       fill.setColor('rgb(242,239,235)');
       styles[length++] = polygon;
     } else if (layer == 'aeroway' && geom == 'LineString' &&
-        resolution <= 76.43702828517625) {
+      resolution <= 76.43702828517625) {
       stroke.setColor('#f0ede9');
       stroke.setWidth(1);
       styles[length++] = line;
@@ -289,21 +291,23 @@ function createMapboxStreetsV6Style(Style, Fill, Stroke, Icon, Text) {
       stroke.setColor('rgba(255,255,255,0.8)');
       stroke.setWidth(1);
       styles[length++] = text;
+      
+      //Qui possiamo settare le icone dei POI
     } else if (layer == 'poi_label' && resolution <= 19.109257071294063 &&
         scalerank == 1 && maki !== 'marker') {
-      styles[length++] = getIcon(maki);
+      //styles[length++] = getIcon(maki);
     } else if (layer == 'poi_label' && resolution <= 9.554628535647032 &&
         scalerank == 2 && maki !== 'marker') {
-      styles[length++] = getIcon(maki);
+      //styles[length++] = getIcon(maki);
     } else if (layer == 'poi_label' && resolution <= 4.777314267823516 &&
         scalerank == 3 && maki !== 'marker') {
-      styles[length++] = getIcon(maki);
+      //styles[length++] = getIcon(maki);
     } else if (layer == 'poi_label' && resolution <= 2.388657133911758 &&
         scalerank == 4 && maki !== 'marker') {
-      styles[length++] = getIcon(maki);
+      //styles[length++] = getIcon(maki);
     } else if (layer == 'poi_label' && resolution <= 1.194328566955879 &&
         scalerank >= 5 && maki !== 'marker') {
-      styles[length++] = getIcon(maki);
+      //styles[length++] = getIcon(maki);
     }
     styles.length = length;
     return styles;
