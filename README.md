@@ -27,6 +27,11 @@ api.getItems('poi').then((value) => {
 <script src="https://cdn.jsdelivr.net/gh/simonevannuccipardo/PardoAPI/src/theme.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/build/ol.js"></script>
 ```
+#### Html da includere
+La larghezza sia l'altezza iniziale del tag devono essere impostate via CSS
+```
+<div id="map"></div>
+```
 #### Crea una mappa con tutte le venue di LLF
 ```
 var map = new PardoMAP(API-CMS, API-APBOX);
