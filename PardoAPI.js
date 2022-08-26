@@ -14,13 +14,16 @@ class PardoAPI {
   api ="";
   saveLocaldata = 0;
   map;
+  lang;
 
   /**
    * Costruttore
    * @param {*} api api key
+   * @param {*} lang language in ISO 639-1 format (2 char)
    */
-  constructor(api) {
+  constructor(api, lang = 'en') {
     this.api = api;
+    this.lang = lang;
   }
 
   /**
@@ -43,24 +46,28 @@ class PardoAPI {
     const res = await response.json();
     return res;
   }
+  
+  get getLocale(){
+    return '?locale=' + this.lang;
+  }
 
   /**
    * Getter per ricreare i vari endpoint
    */
   get urlAssets(){
-    return this.url + this.assets;
+    return this.url + this.assets + this.getLocale();
   }
 
   get urlImage(){
-    return this.urlAssets * this.image;
+    return this.urlAssets + this.image + this.getLocale();
   }
 
   get urlCollectionContents(){
-    return this.url + this.content + this.items;
+    return this.url + this.content + this.items + this.getLocale();
   }
 
   get urlContent(){
-    return this.url + this.content + this.item;
+    return this.url + this.content + this.item + this.getLocale();
   }
 
   getFilter(attr_name, name){
@@ -74,9 +81,10 @@ class PardoGET extends PardoAPI {
   /**
    * Costruttore
    * @param {*} api api key
+   * @param {*} lang language in ISO 639-1 format (2 char)
    */
-   constructor(api) {
-    super(api);
+   constructor(api, lang = 'en') {
+    super(api, lang);
   }
 
   /**
@@ -132,14 +140,11 @@ class PardoMAP extends PardoGET {
    * Costruttore, se non inserisco gli attributo centerLat e centerLon la mappa viene centrata su Locarno
    * @param {*} api API Cocpit CMS
    * @param {*} mapBoxApi API Mapbox
-   * @param {*} target Target map (id)
-   * @param {*} centerLat 
-   * @param {*} centerLon 
+   * @param {*} lang language in ISO 639-1 format (2 char)
    */
-  constructor(api, mapBoxApi) {
-    super(api);
+  constructor(api, mapBoxApi, lang = 'en') {
+    super(api, lang);
     this.mapBoxApi = mapBoxApi;
-    console.info('Si basa sulle librerie OpenLayers e Mapbox')
   }
 
   /**
