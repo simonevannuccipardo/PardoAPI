@@ -44,6 +44,7 @@ map.addPois();
 Classe principale con i medodi base per interfacciarsi a Cockpit CMS
 #### Costruttore new PardoAPI(api)
 @param {*} api api key<br>
+@param {*} lang lingua dei conteunti in formato ISO 639-1 (a 2 lettere), default inglese<br>
 Istanzia la classe prendendo in argomento la api di Cockpit CMS
 #### request(url, method = 'GET')
 @param {*} url url di richiesta<br>
@@ -53,8 +54,9 @@ Metodo *asincrono* generico di richiesta API di Cockpit CMS, tutte le richieste 
 
 ### PardoGET
 Classe per il recupero delle informazioni, sottoforma di JSON, da Cockpit CMS. PardoGET estendel la classe PardoAPI
-#### Costruttore new PardoGET(api)
+#### Costruttore new PardoGET(api,lang)
 @param {*} api api key<br>
+@param {*} lang lingua dei conteunti in formato ISO 639-1 (a 2 lettere), default inglese<br>
 Istanzia la classe prendendo in argomento la api di Cockpit CMS
 #### getItems(type)
 @param {} type tipo di collezione<br>
@@ -71,9 +73,10 @@ Recupera un solo asset specifico cercandolo nella collezione di dati attraverso 
 
 ### PardoMAP
 Classe per la creazione di mappe (ha bisogno librerie esterne per funzionare)
-#### Costruttore new PardoMAP(api, mapBoxApi)
+#### Costruttore new PardoMAP(api, mapBoxApi, lang)
 @param {*} api API Cocpit CMS<br>
 @param {*} mapBoxApi API Mapbox<br>
+@param {*} lang lingua dei conteunti in formato ISO 639-1 (a 2 lettere), default inglese<br>
 Istanzia la classe
 #### setCenterLat (lat)
 Modifica la latitudine del centro della mappa
