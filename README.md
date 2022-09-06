@@ -140,8 +140,7 @@ Classe per la creazione di mappe (ha bisogno librerie esterne per funzionare)
 | addSinglePoi  | (id, icon(opzionale))  | Aggiungo un singolo poi, se *icon* non impostato prende quella di default | - |
 | addPois  | (type(opzionale), icon(opzionale))  | Aggiungo una collezione di POI alla mappa, se *type* e *icon* non impostati prende quella di default) | - |
 | addMarker  | (value, icon(opzionale))  | Metodo per la creazione generica di POI. Crea i marker con gli attributi provenienti da un array, restituise un oggetto 'Layer' da applicare alla mappa, se *icon* non impostato prende quella di default | - |
-| addPopup  | ()  | Questa classe crea degli eventi personalizzati per l'apertura e la chiusura di tooltip sui marker.
- | - |
+| addPopup  | ()  | Questa classe crea degli eventi personalizzati per l'apertura e la chiusura di tooltip sui marker. | - |
 
 #### Costruttore new PardoMAP(api, mapBoxApi, lang)
 @param {*} api API Cocpit CMS<br>
