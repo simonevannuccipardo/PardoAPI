@@ -46,30 +46,48 @@ Classe principale con i medodi base per interfacciarsi a Cockpit CMS
 | Metodo  | Args | Descrizione | Return |
 | ------------- | ------------- | ------------- | ------------- |
 | request  | (url, method)  | Richiesta generica al CMS  | -  |
+| getFilter  | (attr_name, mane)  | Restituisce filtro formattato per l'url  | -  |
+| getLocale  | ()  | Recupera l'attr lingua fornmattato per l'url  | -  |
+| getAssets  | ()  | Recupera l'url assets formattato  | -  |
+| getimage  | ()  | Recupera l'url immagini formattato  | -  |
+| urlCollectionContents  | ()  | Recupera l'url di una collection formattato  | -  |
+| urlContent  | ()  | Recupera l'url di un content formattato  | -  |
 
 #### Costruttore new PardoAPI(api)
 
 | Parametro  | Descrizione |
 | ------------- | ------------- |
 | api  | API key data dal CMS |
-| lang  | lang lingua dei conteunti in formato ISO 639-1 (a 2 lettere), default inglese |
+| lang  | lingua dei conteunti in formato ISO 639-1 (a 2 lettere), default inglese |
 
 Istanzia la classe prendendo in argomento la api di Cockpit CMS
 #### request(url, method = 'GET')
-@param {*} url url di richiesta<br>
-@param {*} method metodo (GET, POST,...)<br>
+
+| Parametro  | Descrizione |
+| ------------- | ------------- |
+| url  | url di richiesta |
+| method  | metodo (GET, POST,...) |
+
 @returns richiesta<br>
 Metodo *asincrono* generico di richiesta API di Cockpit CMS, tutte le richieste si basano su questo metodo
 
 ### PardoGET
 Classe per il recupero delle informazioni, sottoforma di JSON, da Cockpit CMS. PardoGET estendel la classe PardoAPI
+
+| Metodo  | Args | Descrizione | Return |
+| ------------- | ------------- | ------------- | ------------- |
+| getItems  | (type)  | Recupera una collezione (es.POI) di dati | JSON contenente i dati  |
+| getItem  | (type, id)  | Recupera un solo asset specifico passando l'ID | JSON contenente i dati dell'asset |
+| getItemByAttr  | (type, attr, attr_name)  | Recupera un solo asset specifico cercandolo nella collezione di dati attraverso un attributo, di default cerca nell'attributo nome
+ | JSON contenente i dati dell'asset |
+ 
 #### Costruttore new PardoGET(api,lang)
 @param {*} api api key<br>
 @param {*} lang lingua dei conteunti in formato ISO 639-1 (a 2 lettere), default inglese<br>
 Istanzia la classe prendendo in argomento la api di Cockpit CMS
 #### getItems(type)
 @param {} type tipo di collezione<br>
-Recuoera una collezione (es.POI) di dati
+Recupera una collezione (es.POI) di dati
 #### getItem(type, id)
 @param {*} tipo di collezione<br>
 @param {*} id id dell'asset<br>
