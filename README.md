@@ -78,8 +78,7 @@ Classe per il recupero delle informazioni, sottoforma di JSON, da Cockpit CMS. P
 | ------------- | ------------- | ------------- | ------------- |
 | getItems  | (type)  | Recupera una collezione (es.POI) di dati | JSON contenente i dati  |
 | getItem  | (type, id)  | Recupera un solo asset specifico passando l'ID | JSON contenente i dati dell'asset |
-| getItemByAttr  | (type, attr, attr_name)  | Recupera un solo asset specifico cercandolo nella collezione di dati attraverso un attributo, di default cerca nell'attributo nome
- | JSON contenente i dati dell'asset |
+| getItemByAttr  | (type, attr, attr_name)  | Recupera un solo asset specifico cercandolo nella collezione di dati attraverso un attributo, di default cerca nell'attributo nome | JSON contenente i dati dell'asset |
  
 #### Costruttore new PardoGET(api,lang)
 
@@ -118,7 +117,7 @@ Recupera un solo asset specifico cercandolo nella collezione di dati attraverso 
 
 #### Recupero un poi di nome PalaCinema
 
-```ruby
+```
    var api = new PardoGET(API-CMS);
    var palaCinema = api.getItemByAttr('poi', 'Palacinema', 'name');
 ```
@@ -128,6 +127,22 @@ Recupera un solo asset specifico cercandolo nella collezione di dati attraverso 
 
 ### PardoMAP
 Classe per la creazione di mappe (ha bisogno librerie esterne per funzionare)
+
+| Metodo  | Args | Descrizione | Return |
+| ------------- | ------------- | ------------- | ------------- |
+| setCenterLat  | (latitudine)  | Modifica la latitudine del centro della mappa | - |
+| setCenterLon  | (longitudine)  | Modifica la longitudine del centro della mappa | - |
+| setZoom  | (valore da 0 a 15)  | Modifica lo zoom di partenza | - |
+| setDuration  | (millisecondi)  | Modifica la durata delle animazioni sulla mappa | - |
+| setDefaultIcon  | (url icona)  | Modifica l'icona di default | - |
+| setTypeData  | (type)  | Modifica la collezione di default | - |
+| getMap  | (id html tag)  | Crea e pubblica la mappa usando l'ID passato in argomento, se non cambiato precedenetemnte il centro sarà su locarno | - |
+| addSinglePoi  | (id, icon(opzionale))  | Aggiungo un singolo poi, se *icon* non impostato prende quella di default | - |
+| addPois  | (type(opzionale), icon(opzionale))  | Aggiungo una collezione di POI alla mappa, se *type* e *icon* non impostati prende quella di default) | - |
+| addMarker  | (value, icon(opzionale))  | Metodo per la creazione generica di POI. Crea i marker con gli attributi provenienti da un array, restituise un oggetto 'Layer' da applicare alla mappa, se *icon* non impostato prende quella di default | - |
+| addPopup  | ()  | Questa classe crea degli eventi personalizzati per l'apertura e la chiusura di tooltip sui marker.
+ | - |
+
 #### Costruttore new PardoMAP(api, mapBoxApi, lang)
 @param {*} api API Cocpit CMS<br>
 @param {*} mapBoxApi API Mapbox<br>
