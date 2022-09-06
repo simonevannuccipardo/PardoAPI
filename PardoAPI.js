@@ -3,14 +3,17 @@
  */
 
 class PardoAPI {
-  
+  //Url principale
   url = 'https://content.locarnofestival.ch/api';
+  //Endpoints
   content = '/content';
   item = '/item';
   items = '/items'
   assets = '/assets';
   image = this.assets + '/image';
+  //Parametro key api nel heade
   headerApi = "api-key";
+  //API key
   api ="";
   saveLocaldata = 0;
   map;
@@ -124,15 +127,20 @@ class PardoGET extends PardoAPI {
 }
 
 class PardoMAP extends PardoGET {
-
+  //API MapBox
   mapBoxApi = '';
-  attrMap = '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a>© <a href="https://www.openstreetmap.org/copyright"> OpenStreetMap contributors</a>'
-  urlMapbox = 'https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/{z}/{x}/{y}.vector.pbf?access_token='
+  //Attribuzione mappa
+  attrMap = '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a>© <a href="https://www.openstreetmap.org/copyright"> OpenStreetMap contributors</a>';
+  urlMapbox = 'https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/{z}/{x}/{y}.vector.pbf?access_token=';
+  //Coordinate centrali di default (Locarno)
   centerLat = '46.1623';
   centerLon = '8.7786';
   zoom = '14';
+  //Durata animazioni
   duration = 1000; // 1 secondo durata animazione per interazioni
+  //Icona marker di default
   defaultIcon = 'https://assets.locarnofestival.ch/data/web-tools/ico-locate.png';
+  //Tipo di modello di default da CMS
   typeData = 'poi';
 
 
@@ -179,7 +187,7 @@ class PardoMAP extends PardoGET {
   }
 
   /**
-   * Creo l'oggetto mappa e la pubblico
+   * Creo l'oggetto mappa e lo pubblico
    * @param {*} target ID del contenitore in cui verrà pubblicata la mappa
    */
   getMap(target){
@@ -207,7 +215,7 @@ class PardoMAP extends PardoGET {
         zoom: this.zoom,
       })
     });
-
+    //Setto durata animazione dello zoom con i vari metodi di input 
     map.addControl(new ol.control.Zoom({
       duration: this.duration
     }));
@@ -222,7 +230,7 @@ class PardoMAP extends PardoGET {
   }
 
   /**
-   * Aggiungo un signo poi
+   * Aggiungo un singolo POI
    * @param {*} id 
    * @param {*} icon 
    */
@@ -235,7 +243,7 @@ class PardoMAP extends PardoGET {
   
   /**
    * Aggiungo più poi
-   * @param {*} type tipo del poi (es Venue)
+   * @param {*} type tipo del POI (es Venue)
    * @param {*} icon url per l'icona del marker
    */
   addPois(type = this.typeData , icon = this.defaultIcon){
@@ -250,7 +258,7 @@ class PardoMAP extends PardoGET {
 
 
   /**
-   * Crea i marker con gli attributi provenienti da un array, restituise un oggetto 'Layer' da applicare alla mappa
+   * Crea i marker con gli attributi provenienti da un array, restituisce un oggetto 'Layer' da applicare alla mappa
    * @param {*} value array di attributi del POI (singolo POI!!!)
    * @param {*} icon immagine del marker
    * @returns 
