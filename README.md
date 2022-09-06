@@ -115,7 +115,7 @@ Recupera un solo asset specifico cercandolo nella collezione di dati attraverso 
 <details><summary>Esempio</summary>
 <p>
 
-#### Recupero un poi di nome PalaCinema
+#### Recupero un POI di nome PalaCinema
 
 ```
    var api = new PardoGET(API-CMS);
@@ -176,7 +176,7 @@ Crea e pubblica la mappa usando l'ID passato in argomento, se non cambiato prece
 | id  | (id)  | id ID dell'asset | - |
 | icon  | (url icona(opzionale))  | icon icona del marker (se non impostato prende quella di default) | - |
 
-Aggiungo un singolo poi
+Aggiungo un singolo POI
 #### addPois(type = this.typeData , icon = this.defaultIcon)
 
 | Metodo  | Args | Descrizione | Return |
