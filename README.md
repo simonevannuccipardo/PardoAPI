@@ -221,7 +221,7 @@ Si può usare questo metodo per inserire marker che non provengono dal CMS, l'ar
 </details>
 
 #### addPopups()
-Questa classe crea degli eventi personalizzati per l'apertura e la chiusura di tooltip sui marker.
+Questa classe crea degli eventi personalizzati per l'apertura e la chiusura di tooltip sui marker. È stato pensato dare la possibilità di creare un codice esterno, utilizzando un layout personalizzato, per la creazione e lo stile dei popup, completamente svincolato da questa libreria
 
 | evento  | Trigger |Descrizione | Valori |
 | ------------- | ------------- | ------------- | ------------- |
