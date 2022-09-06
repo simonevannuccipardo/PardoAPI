@@ -46,7 +46,7 @@ Classe principale con i medodi base per interfacciarsi a Cockpit CMS
 | Metodo  | Args | Descrizione | Return |
 | ------------- | ------------- | ------------- | ------------- |
 | request  | (url, method)  | Richiesta generica al CMS  | -  |
-| getFilter  | (attr_name, mane)  | Restituisce filtro formattato per l'url  | -  |
+| getFilter  | (attr_name, mane)  | Restituisce filtro formattato per l'url  | Stringa con filtro  |
 | getLocale  | ()  | Recupera l'attr lingua fornmattato per l'url  | -  |
 | getAssets  | ()  | Recupera l'url assets formattato  | -  |
 | getimage  | ()  | Recupera l'url immagini formattato  | -  |
@@ -82,21 +82,49 @@ Classe per il recupero delle informazioni, sottoforma di JSON, da Cockpit CMS. P
  | JSON contenente i dati dell'asset |
  
 #### Costruttore new PardoGET(api,lang)
-@param {*} api api key<br>
-@param {*} lang lingua dei conteunti in formato ISO 639-1 (a 2 lettere), default inglese<br>
+
+| Parametro  | Descrizione |
+| ------------- | ------------- |
+| api  | API key data dal CMS |
+| lang  | lingua dei conteunti in formato ISO 639-1 (a 2 lettere), default inglese |
+
 Istanzia la classe prendendo in argomento la api di Cockpit CMS
 #### getItems(type)
-@param {} type tipo di collezione<br>
+
+| Parametro  | Descrizione |
+| ------------- | ------------- |
+| type  | tipo di collezione (es. POI) |
+
 Recupera una collezione (es.POI) di dati
 #### getItem(type, id)
-@param {*} tipo di collezione<br>
-@param {*} id id dell'asset<br>
+| Parametro  | Descrizione |
+| ------------- | ------------- |
+| type  | tipo di collezione (es. POI) |
+| id  | id dell'asset |
+
 Recupera un solo asset specifico passando l'ID
 #### getItemByAttr(type, attr, attr_name='name') [NON TESTATO]
-@param {*} tipo di collezione<br>
-@param {*} attr valore dell'attributo<br>
-@param {*} attr_name nome dell'attributo<br>
+
+| Parametro  | Descrizione |
+| ------------- | ------------- |
+| type  | tipo di collezione (es. POI) |
+| attr  | valore dell'attributo |
+| attr_name  | nome dell'attributo |
+
 Recupera un solo asset specifico cercandolo nella collezione di dati attraverso un attributo, di default cerca nell'attributo nome
+
+<details><summary>Esempio</summary>
+<p>
+
+#### Recupero un poi di nome PalaCinema
+
+```ruby
+   var api = new PardoGET(API-CMS);
+   var palaCinema = api.getItemByAttr('poi', 'Palacinema', 'name');
+```
+
+</p>
+</details>
 
 ### PardoMAP
 Classe per la creazione di mappe (ha bisogno librerie esterne per funzionare)
