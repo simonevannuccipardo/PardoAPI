@@ -3,12 +3,12 @@
 Questa serie di classi servono a dialogare con il CMS headless di Locarno Film Festival
 
 ## Le classi in breve
-### PardoAPI
-Classe principale con i medodi base per interfacciarsi a Cockpit CMS
 ### PardoGET
 Classe per il recupero delle informazioni, sottoforma di JSON, da Cockpit CMS
 ### PardoMAP
 Classe per la creazione di mappe (ha bisogno librerie esterne per funzionare)
+### PardoAPI (solo di servizio)
+Classe principale con i metodi base per interfacciarsi a Cockpit CMS
 
 ## Esempi
 ### Recuperare informazioni
