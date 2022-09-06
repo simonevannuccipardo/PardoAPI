@@ -203,19 +203,19 @@ Si può usare questo metodo per inserire marker che non provengono dal CMS, l'ar
 | coord  | Si | Array contenente lat e lon |
 | coord.lon  | Si | Longitudine |
 | coord.lat  | Si | Latitudine |
-| category  |  | Categoria POI |
-| name  |  | - |
-| street  |  | - |
-| cap  |  | - |
-| city  |  | - |
-| npark  |  | Numero parcheggi |
-| description  |  | - |
-| tech_details  |  | - |
-| acc_details  |  | - |
-| seat  |  | Array posti a sedere |
-| page_url  |  | Url esterno |
-| pic_url  |  | Url dell'immagine |
-| custom_text |  | - |
+| category  | - | Categoria POI |
+| name  | - | - |
+| street  | - | - |
+| cap  | - | - |
+| city  | - | - |
+| npark  | - | Numero parcheggi |
+| description  | - | - |
+| tech_details  | - | - |
+| acc_details  | - | - |
+| seat  | - | Array posti a sedere |
+| page_url  | - | Url esterno |
+| pic_url  | - | Url dell'immagine |
+| custom_text | - | - |
 
 </p>
 </details>
