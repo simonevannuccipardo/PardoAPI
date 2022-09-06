@@ -48,10 +48,12 @@ Classe principale con i medodi base per interfacciarsi a Cockpit CMS
 | request  | (url, method)  | Richiesta generica al CMS  | -  |
 
 #### Costruttore new PardoAPI(api)
+
 | Parametro  | Descrizione |
 | ------------- | ------------- |
 | api  | API key data dal CMS |
 | lang  | lang lingua dei conteunti in formato ISO 639-1 (a 2 lettere), default inglese |
+
 Istanzia la classe prendendo in argomento la api di Cockpit CMS
 #### request(url, method = 'GET')
 @param {*} url url di richiesta<br>
