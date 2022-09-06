@@ -42,6 +42,11 @@ map.addPois();
 ## Documentazione
 ### PardoAPI
 Classe principale con i medodi base per interfacciarsi a Cockpit CMS
+
+| Metodo  | Descrizione | Return |
+| ------------- | ------------- | ------------- |
+| Content Cell  | Content Cell  | Content Cell  |
+
 #### Costruttore new PardoAPI(api)
 @param {*} api api key<br>
 @param {*} lang lingua dei conteunti in formato ISO 639-1 (a 2 lettere), default inglese<br>
