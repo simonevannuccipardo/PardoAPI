@@ -173,7 +173,34 @@ Aggiungo una collezione di POI alla mappa
 #### addMarker(value, icon = this.defaultIcon)
 @param {*} value array di attributi del POI (singolo POI!!!)<br>
 @param {*} icon immagine del marker<br>
-Metodo per la creazione generica di POI. Crea i marker con gli attributi provenienti da un array, restituise un oggetto 'Layer' da applicare alla mappa
+Metodo per la creazione generica di POI. Crea i marker con gli attributi provenienti da un array, restituise un oggetto 'Layer' da applicare alla mappa.
+Si può usare questo metodo per inserire marker che non provengono dal CMS, l'array value deve essere contenere i seguenti dati:
+
+<details><summary>Dati da inserire in value</summary>
+<p>
+
+| valore  | obbligatorio | Descrizione |
+| ------------- | ------------- | ------------- |
+| coord  | [x] | Array contenente lat e lon |
+| coord.lon  | [x] | Longitudine |
+| coord.lat  | [x] | Latitudine |
+| category  | [ ] | Categoria POI |
+| name  | [ ] | - |
+| street  | [ ] | - |
+| cap  | [ ] | - |
+| city  | [ ] | - |
+| npark  | [ ] | Numero parcheggi |
+| description  | [ ] | - |
+| tech_details  | [ ] | - |
+| acc_details  | [ ] | - |
+| seat  | [ ] | Array posti a sedere |
+| page_url  | [ ] | Url esterno |
+| pic_url  | [ ] | Url dell'immagine |
+| custom_text | [ ] | - |
+
+</p>
+</details>
+
 #### addPopups()
 Questa classe crea degli eventi personalizzati per l'apertura e la chiusura di tooltip sui marker.
 - evento *openPopup* è l'evento che segnala il click sul marker, porta con se i dettagli del marker cliccato
