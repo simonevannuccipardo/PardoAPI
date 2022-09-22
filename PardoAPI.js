@@ -58,19 +58,19 @@ class PardoAPI {
    * Getter per ricreare i vari endpoint
    */
   get urlAssets(){
-    return this.url + this.assets + this.getLocale;
+    return this.url + this.assets;
   }
 
   get urlImage(){
-    return this.urlAssets + this.image + this.getLocale;
+    return this.urlAssets + this.image;
   }
 
   get urlCollectionContents(){
-    return this.url + this.content + this.items + this.getLocale;
+    return this.url + this.content + this.items;
   }
 
   get urlContent(){
-    return this.url + this.content + this.item + this.getLocale;
+    return this.url + this.content + this.item;
   }
 
   getFilter(attr_name, name){
@@ -97,7 +97,7 @@ class PardoGET extends PardoAPI {
    * @returns 
    */
     getItems(type){
-    var url = super.urlCollectionContents + "/" + type
+    var url = super.urlCollectionContents + "/" + type + super.getLocale;
     return super.request(url)
   }
 
@@ -108,7 +108,7 @@ class PardoGET extends PardoAPI {
    * @returns 
    */
   getItem(type, id){
-    var url = super.urlContent + "/" + type + "/" + id;
+    var url = super.urlContent + "/" + type + "/" + id + super.getLocale;
     return super.request(url);
   }
 
