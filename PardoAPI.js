@@ -58,19 +58,19 @@ class PardoAPI {
    * Getter per ricreare i vari endpoint
    */
   get urlAssets(){
-    return this.url + this.assets + this.getLocale();
+    return this.url + this.assets + this.getLocale;
   }
 
   get urlImage(){
-    return this.urlAssets + this.image + this.getLocale();
+    return this.urlAssets + this.image + this.getLocale;
   }
 
   get urlCollectionContents(){
-    return this.url + this.content + this.items + this.getLocale();
+    return this.url + this.content + this.items + this.getLocale;
   }
 
   get urlContent(){
-    return this.url + this.content + this.item + this.getLocale();
+    return this.url + this.content + this.item + this.getLocale;
   }
 
   getFilter(attr_name, name){
