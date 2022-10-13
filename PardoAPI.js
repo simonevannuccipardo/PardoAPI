@@ -15,6 +15,8 @@ class PardoAPI {
   headerApi = "api-key";
   //API key
   api ="";
+  //Time to live cache informazioni
+  ttlCache=300;
   saveLocaldata = 0;
   map;
   lang;
