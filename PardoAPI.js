@@ -30,7 +30,7 @@ class PardoAPI {
   constructor(api, lang = 'en') {
     this.api = api;
     this.lang = lang;
-    this.cacheRafrasher();
+    this.cacheRefrasher();
   }
   
   /**
@@ -38,7 +38,7 @@ class PardoAPI {
    * @param {*} name nome del localstorage dove risiede l'ultimo refresh della cache (in millisecondi)
    * @param {*} ttl tempo in millisecondi della durata della cache
    */
-  cacheRafrasher(name = this.cacheName, ttl = this.ttlCache){
+  cacheRefrasher(name = this.cacheName, ttl = this.ttlCache){
     const now = Date.now();
     const cacheLive = localStorage.getItem(name);
     if ( (now - cacheLive) > ttl ) {
