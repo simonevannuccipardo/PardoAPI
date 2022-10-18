@@ -59,8 +59,25 @@ Classe principale con i medodi base per interfacciarsi a Cockpit CMS
 | ------------- | ------------- |
 | api  | API key data dal CMS |
 | lang  | lingua dei conteunti in formato ISO 639-1 (a 2 lettere), default inglese |
+| ttl  | ttl cache in millisecondi, default 30 minuti|
 
-Istanzia la classe prendendo in argomento la api di Cockpit CMS
+Istanzia la classe prendendo in argomento la api di Cockpit CMS. Inoltre controlla se la cache è da cancellare
+
+#### cacheRafrasher(name = this.cacheName, ttl = this.ttlCache)
+| Parametro  | Descrizione |
+| ------------- | ------------- |
+| name  | nome cache|
+| ttl  | ttl cache in millisecondi, default 30 minuti |
+
+Pulisce la cache data in argomento se supera il ttl
+
+####  purgeCache(cacheName = this.cacheName)
+| Parametro  | Descrizione |
+| ------------- | ------------- |
+| name  | nome cache|
+
+cancella cache data in argomento
+
 #### request(url, method = 'GET')
 
 | Parametro  | Descrizione |
