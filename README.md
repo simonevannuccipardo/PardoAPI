@@ -39,6 +39,33 @@ map.getMap('map');
 map.addPois();
 ```
 
+## Meccanismo di cache
+Questa libreria è provvista di cache. Si avvale delle API Cache e LocalStorage del browser.
+In localStorage viene salvato il timestamp dell'ultimo refresh della cache.
+In cache vengono salvate le risposte di una determinata pagina.
+Per semplificare il codice, quando la cache raggiunde il TTL viene cancellata completamente.
+
+```mermaid
+graph TD;
+    A[Istanzio PardoAPI o una sottoclasse] --> B{Controllo TTL con metodo cacheRefrasher}
+    B -->|TTL superato| C[Cancella cache con metodo purgeCache] 
+    B -->|TTL valido| D[Mantieni cache]
+    C --> S[Salvo in localStorage in nuovo Timestamp]
+    S --> E
+    D --> E
+    E[Faccio richiesta tramite metodo request] --> F[Apro cache o la creo se non esiste]
+    F --> G{Esiste una cache per l'url?}
+    G -->|No| H[Richiedo i dati al server con dataRequest]
+    H --> T[Salvo la risposta nella cache]
+    T --> U[Genero JSON]
+    G -->|Si| I[Recupero la risposta dalla cache]
+    I --> V[Genero JSON]
+    U --> L[Fornisco risposta per render pagina]
+    V --> L
+    H --> W(Richiesta a Cockpit CMS)
+    W --> H
+```
+
 ## Documentazione
 ### PardoAPI
 Classe principale con i medodi base per interfacciarsi a Cockpit CMS
@@ -59,8 +86,25 @@ Classe principale con i medodi base per interfacciarsi a Cockpit CMS
 | ------------- | ------------- |
 | api  | API key data dal CMS |
 | lang  | lingua dei conteunti in formato ISO 639-1 (a 2 lettere), default inglese |
+| ttl  | ttl cache in millisecondi, default 30 minuti|
 
-Istanzia la classe prendendo in argomento la api di Cockpit CMS
+Istanzia la classe prendendo in argomento la api di Cockpit CMS. Inoltre controlla se la cache è da cancellare
+
+#### cacheRafrasher(name = this.cacheName, ttl = this.ttlCache)
+| Parametro  | Descrizione |
+| ------------- | ------------- |
+| name  | nome cache|
+| ttl  | ttl cache in millisecondi, default 30 minuti |
+
+Pulisce la cache data in argomento se supera il ttl
+
+####  purgeCache(cacheName = this.cacheName)
+| Parametro  | Descrizione |
+| ------------- | ------------- |
+| name  | nome cache|
+
+cancella cache data in argomento
+
 #### request(url, method = 'GET')
 
 | Parametro  | Descrizione |
