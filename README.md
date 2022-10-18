@@ -53,7 +53,7 @@ E.
 
 ```mermaid
 graph TD;
-    A[Istanzio PardoAPI(o una sottoclasse)] --> B{Il TTL è superato};
+    A[Istanzio PardoAPI o una sottoclasse] --> B{Il TTL è superato};
     B --> |Si| C[Cancella cache]
     B --> |No| D[Mantieni cache]
     C --> E
