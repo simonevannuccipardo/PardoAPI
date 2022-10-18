@@ -16,7 +16,8 @@ class PardoAPI {
   //API key
   api ="";
   //Time to live cache informazioni
-  ttlCache=300;
+  cacheName = 'pardoapi-cache-live'
+  ttlCache = 60000; //millisecondi
   saveLocaldata = 0;
   map;
   lang;
@@ -29,15 +30,68 @@ class PardoAPI {
   constructor(api, lang = 'en') {
     this.api = api;
     this.lang = lang;
+    this.cacheRafrasher();
+  }
+  
+  /**
+   * Metodo per il refresh della cache
+   * @param {*} name nome del localstorage dove risiede l'ultimo refresh della cache (in millisecondi)
+   * @param {*} ttl tempo in millisecondi della durata della cache
+   */
+  cacheRafrasher(name = this.cacheName, ttl = this.ttlCache){
+    const now = Date.now();
+    const cacheLive = localStorage.getItem(name);
+    if ( (now - cacheLive) > ttl ) {
+        console.log('Cache purged');
+        this.purgeCache();
+        localStorage.setItem(this.cacheName, now);
+    }      
+  }
+  
+  /**
+   * Cancello cache
+   * @param {*} name nome del localstorage dove risiede l'ultimo refresh della cache (in millisecondi)
+   */
+  purgeCache(cacheName = this.cacheName){
+      caches.delete(cacheName);
+  }
+  
+  /**
+   * Modifico la durata standard della cache
+   * @param {*} ttl tempo in millisecondi della durata della cache
+    */
+  setTtlCache(ttl){
+    this.ttl = ttl;
   }
 
   /**
-   * Metodo di richiesta generico
+   * Metodo di richiesta generico con caching
    * @param {*} url url di richiesta
    * @param {*} method metodo (GET, POST,...)
    * @returns 
    */
   async request(url, method = 'GET'){
+    const cache = await caches.open(this.cacheName);
+    let response = await cache.match(url);
+    if(!response){
+        console.log('Server response')
+        const res = await this.dataRequest(url, method);
+        const cacheres = await cache.put(url, res.clone());
+        return await res.json();
+    } else {
+        console.log('Cached response');
+        const cachedRes = await response.json();
+        return cachedRes;       
+    }
+  }
+  
+   /**
+   * Metodo di richiesta generico
+   * @param {*} url url di richiesta
+   * @param {*} method metodo (GET, POST,...)
+   * @returns 
+   */
+  async dataRequest(url, method = 'GET'){
     var myHeaders = new Headers();
     myHeaders.append(this.headerApi, this.api);
 
@@ -48,8 +102,8 @@ class PardoAPI {
     };
 
     const response = await fetch(url, requestOptions);
-    const res = await response.json();
-    return res;
+    //const res = await response.json();
+    return response;
   }
   
   get getLocale(){
@@ -98,9 +152,11 @@ class PardoGET extends PardoAPI {
    * @param {} filter string in Mongo Query sintax
    * @returns 
    */
-    getItems(type){
+  getItems(type){
     var url = super.urlCollectionContents + "/" + type + super.getLocale;
-    return super.request(url)
+    const res = super.request(url);
+    //console.log("getItem data " + res)
+    return res;
   }
 
   /**
@@ -111,7 +167,9 @@ class PardoGET extends PardoAPI {
    */
   getItem(type, id){
     var url = super.urlContent + "/" + type + "/" + id + super.getLocale;
-    return super.request(url);
+    const res = super.request(url);
+    //console.log("getItem data " + res)
+    return res;
   }
 
   /**
@@ -329,4 +387,3 @@ class PardoMAP extends PardoGET {
   }
 
 }
-
