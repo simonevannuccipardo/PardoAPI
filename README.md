@@ -53,11 +53,23 @@ E.
 
 ```mermaid
 graph TD;
-    A[Istanzio PardoAPI o una sottoclasse] --> B{Il TTL è superato};
-    B --> |Si| C[Cancella cache]
-    B --> |No| D[Mantieni cache]
-    C --> E
-    C --> E
+    A[Istanzio PardoAPI o una sottoclasse] --> B{Controllo TTL con metodo cacheRafrasher}
+    B -->|TTL superato| C[Cancella cache con metodo purgeCache] 
+    B -->|TTL valido| D[Mantieni cache]
+    C --> S[Salvo in localStorage in nuovo Timestamp]
+    S --> E
+    D --> E
+    E[Faccio richiesta tramite metodo request] --> F[Apro cache o la creo se non esiste]
+    F --> G{Esiste una cache per l'url?}
+    G -->|No| H[Richiedo i dati al server con dataRequest]
+    H --> T[Salvo la risposta nella cache]
+    T --> U[Genero JSON]
+    G -->|Si| I[Recupero la risposta dalla cache]
+    I --> V[Genero JSON]
+    U --> L[Fornisco risposta per render pagina]
+    V --> L
+    H --> W(Richiesta a Cockpit CMS)
+    W --> H
 ```
 
 ## Documentazione
