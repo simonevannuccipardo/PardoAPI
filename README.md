@@ -45,12 +45,6 @@ In localStorage viene salvato il timestamp dell'ultimo refresh della cache.
 In cache vengono salvate le risposte di una determinata pagina.
 Per semplificare il codice, quando la cache raggiunde il TTL viene cancellata completamente.
 
-A. Quando si instanzia PardoAPI(o una sottoclasse) viene controllato il TTL
-B. Se la cache ha superato il TTL viene cancellata
-C. Quando si fa una richiesta server viene aperta una cache, se non esiste viene creata ( cache.open(nome cache) )
-D. Se la cache esiste, si controlla se è stata salvata una richiesta per quel URL
-E. 
-
 ```mermaid
 graph TD;
     A[Istanzio PardoAPI o una sottoclasse] --> B{Controllo TTL con metodo cacheRafrasher}
