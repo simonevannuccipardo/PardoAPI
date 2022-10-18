@@ -47,7 +47,7 @@ Per semplificare il codice, quando la cache raggiunde il TTL viene cancellata co
 
 ```mermaid
 graph TD;
-    A[Istanzio PardoAPI o una sottoclasse] --> B{Controllo TTL con metodo cacheRafrasher}
+    A[Istanzio PardoAPI o una sottoclasse] --> B{Controllo TTL con metodo cacheRefrasher}
     B -->|TTL superato| C[Cancella cache con metodo purgeCache] 
     B -->|TTL valido| D[Mantieni cache]
     C --> S[Salvo in localStorage in nuovo Timestamp]
