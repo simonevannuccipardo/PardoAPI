@@ -25,12 +25,30 @@ class PardoAPI {
   /**
    * Costruttore
    * @param {*} api api key
+   * @param {*} headerApi nome parametro nel hgeader per API key
+   * @param {*} url url API
    * @param {*} lang language in ISO 639-1 format (2 char)
    */
   constructor(api, lang = 'en') {
     this.api = api;
     this.lang = lang;
     this.cacheRefrasher();
+  }
+
+  /**
+   * Imposto url API
+   * @param {*} url URL API
+   */
+  set url(url){
+    this.url = url;
+  }
+
+  /**
+   * Imposto la parametro nel header per la API key 
+   * @param {*} headerApi nome header
+   */
+  set headerApi(headerApi){
+    this.headerApi = headerApi;
   }
   
   /**
@@ -106,36 +124,16 @@ class PardoAPI {
     return response;
   }
   
-  get getLocale(){
-    return '?locale=' + this.lang;
-  }
-
-  /**
-   * Getter per ricreare i vari endpoint
-   */
-  get urlAssets(){
-    return this.url + this.assets;
-  }
-
-  get urlImage(){
-    return this.urlAssets + this.image;
-  }
-
-  get urlCollectionContents(){
-    return this.url + this.content + this.items;
-  }
-
-  get urlContent(){
-    return this.url + this.content + this.item;
-  }
-
-  getFilter(attr_name, name){
-    return "{" + attr_name + ":\"" + name + "\"}";
-  }
-
 }
 
-class PardoGET extends PardoAPI {
+class FionaAPI extends PardoAPI {
+  
+  //Parametro key api nel header per Fiona
+  headerApiFiona = "apikey";
+  //URL per Fiona
+  urlFiona = "https://locarnofestival-w-api.fiona-online.net";
+  apiVersionFiona = "v1";
+  urlMiddleware = "https://forms.locarnofestival.ch/api/fiona-json-film.php";
 
   /**
    * Costruttore
@@ -144,6 +142,112 @@ class PardoGET extends PardoAPI {
    */
    constructor(api, lang = 'en') {
     super(api, lang);
+    super.headerApi = this.headerApiFiona;
+    super.url = this.urlFiona + "/" + this.apiVersionFiona;
+  }
+
+  /**
+   * Generic request of a Fiona's item, this method do not store data in the object
+   * @param {} type type of item (films, editiontypes,...)
+   * @param {} id id of the object
+   * @param {} param filter
+   * @returns 
+   */
+    getItem(type, id, param = ""){
+      let url = this.urlFiona + "/" + this.apiVersionFiona + "/" + type + "/" + id;
+      const res = super.request(url);
+      console.log("req url: " + url)
+      console.log("getItem data: " + res)
+      return res;
+    }
+
+    getFromMiddleware(param, id){
+      let url = this.urlMiddleware + "?" + param + "=" + id;
+      const res = super.request(url);
+      console.log("req url: " + url)
+      console.log("getItem data: " + res)
+      return res; 
+    }
+}
+
+class FilmAPI extends FionaAPI {
+
+  //ID
+  id = "";
+
+  //Endpoints & parameters
+  films = "films";
+  filmsMiddleware = "FilmId";
+  editions = "editions";
+  editionsections = "editionsections";
+
+  //Response array
+  data = [];
+
+  constructor(api, lang = 'en') {
+    super(api, lang);
+  }
+
+  getFilm(id){
+    this.id = id;
+    const data = super.getFromMiddleware(this.filmsMiddleware, id);
+    this.data = data;
+    return data;
+  }
+
+  get filmPreferredTitle(){
+    return this.data.filmPreferredTitle;
+  }
+
+}
+
+class PardoGET extends PardoAPI {
+
+  //Parametro key api nel header per Cockpit CMS
+  headerApiCockpit = "api-key";
+  //URL per Cockpit CMS
+  urlCockpit = 'https://content.locarnofestival.ch/api';
+  //Endpoints
+  content = '/content';
+  item = '/item';
+  items = '/items'
+  assets = '/assets';
+  image = this.assets + '/image';
+
+  /**
+   * Costruttore
+   * @param {*} api api key
+   * @param {*} lang language in ISO 639-1 format (2 char)
+   */
+   constructor(api, lang = 'en') {
+    super(api, this.headerApiCockpit, this.urlCockpit, lang);
+  }
+
+  get getLocale(){
+    return '?locale=' + super.lang;
+  }
+
+  /**
+   * Getter per ricreare i vari endpoint
+   */
+  get urlAssets(){
+    return super.url + this.assets;
+  }
+
+  get urlImage(){
+    return this.urlAssets + this.image;
+  }
+
+  get urlCollectionContents(){
+    return super.url + this.content + this.items;
+  }
+
+  get urlContent(){
+    return super.url + this.content + this.item;
+  }
+
+  getFilter(attr_name, name){
+    return "{" + attr_name + ":\"" + name + "\"}";
   }
 
   /**
@@ -153,7 +257,7 @@ class PardoGET extends PardoAPI {
    * @returns 
    */
   getItems(type){
-    var url = super.urlCollectionContents + "/" + type + super.getLocale;
+    var url = this.urlCollectionContents + "/" + type + this.getLocale;
     const res = super.request(url);
     //console.log("getItem data " + res)
     return res;
@@ -166,7 +270,7 @@ class PardoGET extends PardoAPI {
    * @returns 
    */
   getItem(type, id){
-    var url = super.urlContent + "/" + type + "/" + id + super.getLocale;
+    var url = this.urlContent + "/" + type + "/" + id + this.getLocale;
     const res = super.request(url);
     //console.log("getItem data " + res)
     return res;
@@ -180,7 +284,7 @@ class PardoGET extends PardoAPI {
    * @returns 
    */
   getItemByAttr(type, attr, attr_name='name'){
-    var url = super.urlCollectionContents + "/" + + "?filter=" + getFilter(attr_name, attr);
+    var url = this.urlCollectionContents + "/" + + "?filter=" + getFilter(attr_name, attr);
     return super.request(url);
   }
 
