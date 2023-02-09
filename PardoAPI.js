@@ -231,7 +231,7 @@ class PardoGET extends PardoAPI {
    * Getter per ricreare i vari endpoint
    */
   get urlAssets(){
-    return super.url + this.assets;
+    return this.urlCockpit + this.assets;
   }
 
   get urlImage(){
@@ -239,7 +239,7 @@ class PardoGET extends PardoAPI {
   }
 
   get urlCollectionContents(){
-    return super.url + this.content + this.items;
+    return this.urlCockpit + this.content + this.items;
   }
 
   get urlContent(){
@@ -259,7 +259,7 @@ class PardoGET extends PardoAPI {
   getItems(type){
     var url = this.urlCollectionContents + "/" + type + this.getLocale;
     const res = super.request(url);
-    //console.log("getItem data " + res)
+    console.log("getItem data " + res)
     return res;
   }
 
