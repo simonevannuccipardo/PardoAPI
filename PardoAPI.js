@@ -220,7 +220,7 @@ class PardoGET extends PardoAPI {
    * @param {*} lang language in ISO 639-1 format (2 char)
    */
    constructor(api, lang = 'en') {
-    super(api, this.headerApiCockpit, this.urlCockpit, lang);
+    super(api, lang);
   }
 
   get getLocale(){
