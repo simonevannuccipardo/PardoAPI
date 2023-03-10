@@ -1,4 +1,5 @@
-/**
+<script>
+    /**
  * Pardo API si occupa di gestire le richiesta di dati da Cockpit
  */
 
@@ -19,8 +20,8 @@ class PardoAPI {
   cacheName = 'pardoapi-cache-live'
   ttlCache = 60000; //millisecondi
   saveLocaldata = 0;
-  map;
-  lang;
+  map = '';
+  lang ='';
 
   /**
    * Costruttore
@@ -30,11 +31,17 @@ class PardoAPI {
    * @param {*} lang language in ISO 639-1 format (2 char)
    */
   constructor(api, lang = 'en') {
+    console.log(lang);
     this.api = api;
     this.lang = lang;
+    console.log(this.getLang);
     this.cacheRefrasher();
   }
 
+    get getLang(){
+        console.log(this.lang)
+        return this.lang;
+    }
   /**
    * Imposto url API
    * @param {*} url URL API
@@ -220,11 +227,14 @@ class PardoGET extends PardoAPI {
    * @param {*} lang language in ISO 639-1 format (2 char)
    */
    constructor(api, lang = 'en') {
+
+    console.log(lang);
     super(api, lang);
+    console.log(super.getLang);
   }
 
-  get getLocale(){
-    return '?locale=' + super.lang;
+  getLocale(){
+    return '?locale=' + super.getLang;
   }
 
   /**
@@ -243,7 +253,7 @@ class PardoGET extends PardoAPI {
   }
 
   get urlContent(){
-    return super.url + this.content + this.item;
+    return this.urlCockpit + this.content + this.item;
   }
 
   getFilter(attr_name, name){
@@ -257,7 +267,7 @@ class PardoGET extends PardoAPI {
    * @returns 
    */
   getItems(type){
-    var url = this.urlCollectionContents + "/" + type + this.getLocale;
+    var url = this.urlCollectionContents + "/" + type + this.getLocale();
     const res = super.request(url);
     console.log("getItem data " + res)
     return res;
@@ -270,7 +280,9 @@ class PardoGET extends PardoAPI {
    * @returns 
    */
   getItem(type, id){
-    var url = this.urlContent + "/" + type + "/" + id + this.getLocale;
+     
+    var url = this.urlContent + "/" + type + "/" + id + this.getLocale();
+    console.log(url);
     const res = super.request(url);
     //console.log("getItem data " + res)
     return res;
@@ -315,6 +327,7 @@ class PardoMAP extends PardoGET {
    * @param {*} lang language in ISO 639-1 format (2 char)
    */
   constructor(api, mapBoxApi, lang = 'en') {
+    console.log(lang);
     super(api, lang);
     this.mapBoxApi = mapBoxApi;
   }
@@ -491,3 +504,5 @@ class PardoMAP extends PardoGET {
   }
 
 }
+
+</script>
