@@ -267,7 +267,21 @@ class PardoGET extends PardoAPI {
    * @returns 
    */
   getItems(type){
-    var url = this.urlCollectionContents + "/" + type + this.getLocale();
+    let url = this.urlCollectionContents + "/" + type + this.getLocale();
+    const res = super.request(url);
+    console.log("getItem data " + res)
+    return res;
+  }
+
+   /**
+   * Get a collection of a specific content items
+   * @param {} type type of collection
+   * @param {} field field to order
+   * @param {} sort sorting "direction", 1 = ascendent -1 = descendentt
+   * @returns 
+   */
+  getSortItems(type, field, sort){
+    let url = this.urlCollectionContents + "/" + type + this.getLocale() + "&sort["+field+"]=" + sort;
     const res = super.request(url);
     console.log("getItem data " + res)
     return res;
@@ -281,7 +295,7 @@ class PardoGET extends PardoAPI {
    */
   getItem(type, id){
      
-    var url = this.urlContent + "/" + type + "/" + id + this.getLocale();
+    let url = this.urlContent + "/" + type + "/" + id + this.getLocale();
     console.log(url);
     const res = super.request(url);
     //console.log("getItem data " + res)
